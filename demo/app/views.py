@@ -45,6 +45,6 @@ def user_logout(request):
 
 def products(request):
     category = request.GET.get('category', 0)
-    products = models.Product.objects.all()
+    products = models.Product.objects.filter(category_id=int(category))
     context = { "category": category, 'products': products }
     return render(request, 'products.html', context)
