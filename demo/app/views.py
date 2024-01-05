@@ -45,4 +45,6 @@ def user_logout(request):
 
 
 def products(request):
-    return render(request, 'products.html')
+    category = request.GET.get('category', 0)
+    context = { "category": category }
+    return render(request, 'products.html', context)
