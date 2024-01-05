@@ -8,5 +8,12 @@
     {% include 'header/topbar.html'   %}
 
     <hr>
-    <div>{{ category }}</div>
+
+    <div class="container mx-auto flex py-10">
+        {% for product in products %}
+            <div class="border border-black border-solid max-w-[100px] max-h-[200px]">
+                    <img src="{{ product.image.url }}" alt="">
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

@@ -1,10 +1,9 @@
 from django.shortcuts import render
-
-
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout 
 from django.contrib.auth.decorators import login_required
 from .forms import SignupForm, LoginForm
+from . import models
 
 
 # Create your views here.
@@ -46,5 +45,6 @@ def user_logout(request):
 
 def products(request):
     category = request.GET.get('category', 0)
-    context = { "category": category }
+    products = models.Product.objects.all()
+    context = { "category": category, 'products': products }
     return render(request, 'products.html', context)
