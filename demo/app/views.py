@@ -48,3 +48,11 @@ def products(request):
     products = models.Product.objects.filter(category_id=int(category))
     context = { "category": category, 'products': products }
     return render(request, 'products.html', context)
+
+
+def product(request, id):
+    product = models.Product.objects.get(id=id)
+    context = {
+        'product': product
+    }
+    return render(request, 'product.html', context)

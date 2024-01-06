@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Product
+{% endblock %}
+
+{% block content %}
+    {% include 'header/topbar.html'   %}
+
+    <hr>
+
+    <div class="container mx-auto flex py-10 space-x-[20px]">
+        <div class="w-1/2 rounded flex space-x-[20px]">
+            <div class="w-1/4 space-y-[20px] rounded" id="thumbnailContainer">
+                <img src="{% static 'img/programm.jpg' %}" alt="" class="thumbnail object-cover w-full max-h-[135px] rounded">    
+                <img src="{% static 'img/flowers.jpg' %}" alt="" class="thumbnail object-cover w-full max-h-[135px] rounded">    
+                <img src="{% static 'img/picture.jpg' %}" alt="" class="thumbnail object-cover w-full max-h-[135px] rounded">    
+                <img src="{% static 'img/programm.jpg' %}" alt="" class="thumbnail object-cover w-full max-h-[135px] rounded">    
+            </div>
+            <div class="w-3/4 rounded">
+                <img id="mainImage" src="{% static 'img/programm.jpg' %}" alt="" class="object-cover w-full h-[590px] rounded">
+            </div>
+        </div>
+        <div class="w-1/2 bg-white rounded">Salam</div>
+    </div>
+
+    <script>
+        const mainImage = document.getElementById('mainImage');
+        const thumbnailContainer = document.getElementById('thumbnailContainer');
+
+        thumbnailContainer.addEventListener('click', (event) => {
+            if (event.target.classList.contains('thumbnail')) {
+                mainImage.src = event.target.src;
+            }
+        });
+    </script>
+{% endblock %}

@@ -11,22 +11,28 @@
 
     <div class="container mx-auto flex py-10 space-x-[20px]">
         {% for product in products %}
-            <div class="rounded w-[300px] max-h-[500px] bg-white shadow-lg p-[10px]">
-                <img src="{{ product.image.url }}" alt="" class="rounded w-full h-[200px]">
-                <div class="text-[20px] my-[5px]">
-                    {{ product.name }}
+            <div class="rounded w-[300px] max-h-[500px] bg-white shadow-lg">
+                <div class="overflow-hidden">
+                    <img src="{{ product.image.url }}" alt="" class="rounded-t w-full h-[200px] object-cover transition-transform transform hover:scale-110 duration-500">
                 </div>
-                <div class="text-blue-500 mb-[20px]">
-                    {{ product.price }} TMT
+                <div class="p-[10px]">
+                    <div class="text-[20px]">
+                        {{ product.name }}
+                    </div>
+                    <div class="text-[13px] leading-none font-thin">
+                        {{ product.description }}
+                    </div>
+                    <div class="flex justify-between text-center mt-[20px] items-center">
+                        <div class="text-blue-500">
+                            {{ product.price }} TMT
+                        </div>
+                        <a href="{% url 'product' id=product.id %}" 
+                            class="border border-[#658C4A] border-solid py-[1px] rounded 
+                            px-[10px] text-[#658C4A] font-semibold hover:bg-[#658C4A]
+                            hover:text-white"
+                        >Giňişleýin</a>
+                    </div>
                 </div>
-                <div class="text-center mb-[10px]">
-                    <a href="#" 
-                        class="border border-[#658C4A] border-solid rounded-full py-[5px] 
-                        px-[30px] text-[#658C4A] mt-[10px] font-semibold hover:bg-[#658C4A]
-                        hover:text-white"
-                    >Giňişleýin</a>
-                </div>
-
 
             </div>
         {% endfor %}
