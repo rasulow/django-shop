@@ -6,23 +6,61 @@
 {% endblock %}
 
 {% block content %}
+
+    
     {% include 'header/topbar.html'   %}
 
     <hr>
 
-    <div class="container mx-auto flex py-10 space-x-[20px]">
-        <div class="w-1/2 rounded flex space-x-[20px]">
-            <div class="w-1/4 space-y-[20px] rounded" id="thumbnailContainer">
-                <img src="{% static 'img/programm.jpg' %}" alt="" class="thumbnail object-cover w-full max-h-[135px] rounded">    
-                <img src="{% static 'img/flowers.jpg' %}" alt="" class="thumbnail object-cover w-full max-h-[135px] rounded">    
-                <img src="{% static 'img/picture.jpg' %}" alt="" class="thumbnail object-cover w-full max-h-[135px] rounded">    
-                <img src="{% static 'img/programm.jpg' %}" alt="" class="thumbnail object-cover w-full max-h-[135px] rounded">    
+    <div class="container mx-auto flex justify-center py-10 space-x-[20px]">
+        <div class="">
+            <div class="w-full rounded flex items-center justify-center space-x-[20px]">
+                <div class="w-1/7 space-y-[20px] rounded" id="thumbnailContainer">
+                    {% if product.image1 %}
+                        <img src="{{ product.image1.url }}" alt="" class="cursor-pointer thumbnail object-cover w-[120px] h-[100px] rounded">    
+                    {% endif %}
+                    {% if product.image2 %}
+                        <img src="{{ product.image2.url }}" alt="" class="cursor-pointer thumbnail object-cover w-[120px] h-[100px] rounded">    
+                    {% endif %}
+                    {% if product.image3 %}
+                        <img src="{{ product.image3.url }}" alt="" class="cursor-pointer thumbnail object-cover w-[120px] h-[100px] rounded">    
+                    {% endif %}
+                    {% if product.image4 %}
+                        <img src="{{ product.image4.url }}" alt="" class="cursor-pointer thumbnail object-cover w-[120px] h-[100px] rounded">    
+                    {% endif %}
+                    {% if product.image5 %}
+                        <img src="{{ product.image5.url }}" alt="" class="cursor-pointer thumbnail object-cover w-[120px] h-[100px] rounded">    
+                    {% endif %}
+                </div>
+                <div class="w-full h-full rounded">
+                    <img id="mainImage" src="{{ product.image1.url }}" alt="{{ product.name }}" class="img-thumbnail object-cover w-full h-full rounded" data-toggle="modal" data-target="#largeImageModal">
+                </div>
             </div>
-            <div class="w-3/4 rounded">
-                <img id="mainImage" src="{% static 'img/programm.jpg' %}" alt="" class="object-cover w-full h-[590px] rounded">
+            <div class="mt-[20px]">
+                <div class="w-3/7 bg-white rounded p-[30px]">
+                    <div class="flex items-center justify-between">
+                        <div class="text-[25px] font-semibold">{{ product.name }}</div>
+                        <div class="text-[40px] font-bold text-blue-500">{{ product.price }} TMT</div>
+                    </div>
+                    <div class="flex space-x-4 mt-[20px]">
+                        <div class="text-[15px] font-normal">Description:</div>
+                        <div class="text-[15px] font-thin">{{ product.description }}</div>
+                    </div>
+                    <div class="flex items-center space-x-4  my-[20px]">
+                        <div class="text-[15px] font-normal">Category:</div>
+                        <div class="text-[15px] font-light px-3 bg-[#658C4A] text-white rounded">{{ product.category }}</div>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <div class="text-[15px] font-normal">User:</div>
+                            <div class="text-[15px] font-light px-3 bg-[#658C4A] text-white rounded">{{ product.user.first_name }} {{ product.user.last_name }}</div>
+                        </div>
+                        <a href="{% url 'create-order' %}?product_id={{ product.id }}" class="border border-[#658C4A] border-solid rounded px-[20px] text-[#658C4A] text-[20px] font-normal hover:bg-[#658C4A] hover:text-white">Satyn almak</a>
+                    </div>
+                    
+                </div>
             </div>
         </div>
-        <div class="w-1/2 bg-white rounded">Salam</div>
     </div>
 
     <script>

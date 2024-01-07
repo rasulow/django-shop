@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Product
+{% endblock %}
+
+{% block content %}
+
+    {% include 'header/topbar.html'   %}
+
+    <hr>
+
+    <div class="container mx-auto py-10 h-screen flex justify-center">
+        <form action="#" method="post">
+            {% csrf_token %}
+                <label for="">Phone number</label><br>
+                <div class="flex px-[5px] py-[8px] mt-2 rounded border-[2px] border-solid border-gray-200 h-[40px] w-[200px]">
+                    <input type="text" class="focus:outline-none w-full bg-transparent" placeholder="+993" name="phone_number">
+                </div>
+            <div class="mt-5">
+                <label for="">Note</label><br>
+                <div class="flex px-[5px] py-[8px] mt-2 rounded border-[2px] border-solid border-gray-200 ">
+                    <textarea name="note" id="" cols="100" rows="10" class="focus:outline-none w-full bg-transparent"></textarea>
+                </div>
+            </div>
+            <div class="mt-[20px]">
+                
+            </div>
+            <div class="w-full flex justify-end">
+                <button type="submit" class="mt-4 bg-[#658C4A] text-white font-medium py-1 px-4 rounded">Satyn al</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

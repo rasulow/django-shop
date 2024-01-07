@@ -19,6 +19,12 @@
                         {% if field.name == 'username' %}
                             <input type="text" class="border w-full text-base px-2 py-1 focus:outline-none" name="{{ field.name }}" id="{{ field.id_for_label }}">
                         {% endif %}
+                        {% if field.name == 'first_name' %}
+                            <input type="text" class="border w-full text-base px-2 py-1 focus:outline-none" name="{{ field.name }}" id="{{ field.id_for_label }}">
+                        {% endif %}
+                        {% if field.name == 'last_name' %}
+                            <input type="text" class="border w-full text-base px-2 py-1 focus:outline-none" name="{{ field.name }}" id="{{ field.id_for_label }}">
+                        {% endif %}
                         {% if field.name == 'password1' %}
                             <input type="password" class="border w-full text-base px-2 py-1 focus:outline-none" name="{{ field.name }}" id="{{ field.id_for_label }}">
                         {% endif %}

@@ -1,8 +1,8 @@
 {% load static %}
 
-<div class="container mx-auto my-4 flex items-center justify-between px-[60px] py-[16px]">
+<div class="container mx-auto flex items-center justify-between ">
   <a href="{% url 'home' %}">
-    <img src="{% static 'icons/logo.svg' %}" alt="" class="cursor-pointer">
+    <img src="{% static 'icons/logo.png' %}" alt="" class="cursor-pointer w-[150px]">
   </a>
   <div class=" flex space-x-[8px] px-[16px] py-[8px] rounded-full border-[2px] border-solid border-gray-200 h-[40px] w-[880px]">
     <img src="{% static 'icons/search.svg' %}" alt="" class="pointer">
@@ -10,7 +10,7 @@
   </div>
   <div class="flex space-x-[16px]">
     {% if request.user.is_authenticated %}
-      <p class="p-1 rounded min-w-[80px] text-center border border-[#658C4A] border-solid text-[#658C4A]">{{ request.user.username }}</p>
+      <p class="py-1 px-2 rounded min-w-[80px] text-center border border-[#658C4A] border-solid text-[#658C4A]">{{ request.user.first_name }} {{ request.user.last_name }}</p>
       <a href="{% url 'logout' %}" class="p-1 rounded w-[80px] text-center border border-[#711324] border-solid text-[#711324] hover:text-white hover:bg-[#711324]">Log out</a>
     {% else %}
       <a href="{% url 'login' %}" class="p-1 rounded w-[80px] text-center border border-[#658C4A] border-solid text-[#658C4A] hover:text-white hover:bg-[#658C4A]">Sign in</a>

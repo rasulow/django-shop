@@ -56,3 +56,14 @@ def product(request, id):
         'product': product
     }
     return render(request, 'product.html', context)
+
+
+def create_order(request):
+    if request.method == 'POST':
+        phone_number = request.POST.get('phone_number')
+        note = request.POST.get('note')
+        product_id = request.GET.get('product_id', 0)
+        user_id = request.user.id
+        models.Order.objects.create(phone_number=phone_number, user_id=user_id, product_id=product_id, note=note)
+        return redirect('home')
+    return render(request, 'create_order.html')
