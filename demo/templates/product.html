@@ -55,7 +55,13 @@
                             <div class="text-[15px] font-normal">User:</div>
                             <div class="text-[15px] font-light px-3 bg-[#658C4A] text-white rounded">{{ product.user.first_name }} {{ product.user.last_name }}</div>
                         </div>
-                        <a href="{% url 'create-order' %}?product_id={{ product.id }}" class="border border-[#658C4A] border-solid rounded px-[20px] text-[#658C4A] text-[20px] font-normal hover:bg-[#658C4A] hover:text-white">Satyn almak</a>
+                        
+                            
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'create-order' %}?product_id={{ product.id }}" class="border border-[#658C4A] border-solid rounded px-[20px] text-[#658C4A] text-[20px] font-normal hover:bg-[#658C4A] hover:text-white">Satyn almak</a>
+                        {% else %}
+                            <div class="text-gray-300">Satyn almak ucin hasaba alynmaly</div>                            
+                        {% endif %}
                     </div>
                     
                 </div>

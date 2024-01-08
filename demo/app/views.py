@@ -43,13 +43,19 @@ def user_logout(request):
     return redirect('login')
 
 
+# products page
 def products(request):
     category = request.GET.get('category', 0)
-    products = models.Product.objects.filter(category_id=int(category))
+    if category != 0:
+        products = models.Product.objects.filter(category_id=int(category))
+    else:
+        products = models.Product.objects.all()
+        
     context = { "category": category, 'products': products }
     return render(request, 'products.html', context)
 
 
+# product-detail page
 def product(request, id):
     product = models.Product.objects.get(id=id)
     context = {
@@ -58,6 +64,8 @@ def product(request, id):
     return render(request, 'product.html', context)
 
 
+# create-order page
+@login_required(login_url='/login')
 def create_order(request):
     if request.method == 'POST':
         phone_number = request.POST.get('phone_number')
@@ -66,12 +74,48 @@ def create_order(request):
         user_id = request.user.id
         models.Order.objects.create(phone_number=phone_number, user_id=user_id, product_id=product_id, note=note)
         return redirect('home')
-    return render(request, 'create_order.html')
+    return render(request, 'create_order.html') 
 
 
+# create-product page
+@login_required(login_url='/login')
 def create_product(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        price = request.POST.get('price')
+        category_id = request.POST.get('category')
+        image1 = request.FILES.get('image1')
+        image2 = request.FILES.get('image2')
+        image3 = request.FILES.get('image3')
+        image4 = request.FILES.get('image4')
+        image5 = request.FILES.get('image5')
+        models.Product.objects.create(
+            name=name,
+            description=description,
+            price=price,
+            category_id=category_id,
+            user_id=request.user.id,
+            image1=image1,
+            image2=image2,
+            image3=image3,
+            image4=image4,
+            image5=image5,
+        )
+        return redirect('products')    
     category = models.Category.objects.all()
     context = {
         "category": category
     }
     return render(request, 'create_product.html', context)
+
+
+
+# orders page
+@login_required(login_url='/login')
+def orders(request):
+    orders = models.Order.objects.filter(user_id=request.user.id)
+    context = {
+        'orders': orders
+    }
+    return render(request, 'orders.html', context)

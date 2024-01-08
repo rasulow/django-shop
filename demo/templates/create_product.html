@@ -12,20 +12,24 @@
     <hr>
 
     <div class="container mx-auto py-10 h-screen flex justify-center">
-        <form action="{% url 'home' %}" method="post">
+        <form action="#" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            
             <label for="">Name</label><br>
             <div class=" flex space-x-[8px] px-[5px] py-[8px] border-[2px] border-solid border-gray-200 h-[40px] w-[600px] mb-2 rounded">
                 <input type="text" class="focus:outline-none w-full bg-transparent" placeholder="" name="name">
             </div>
+            
             <label for="">Description</label><br>
             <div class="flex px-[5px] py-[8px] mb-2 rounded border-[2px] border-solid border-gray-200 ">
                 <textarea name="description" id="" cols="70" rows="10" class="focus:outline-none w-full bg-transparent"></textarea>
             </div>
+            
             <label for="">Price</label><br>
             <div class=" flex space-x-[8px] px-[5px] py-[8px] border-[2px] border-solid border-gray-200 h-[40px] w-[200px] mb-2 rounded">
-                <input type="number" class="focus:outline-none w-full bg-transparent" placeholder="" name="name">
+                <input type="number" class="focus:outline-none w-full bg-transparent" placeholder="" name="price">
             </div>
+
             <label for="">Category</label><br>
             <div class=" flex space-x-[8px] px-[5px] py-[8px] border-[2px] border-solid border-gray-200 h-[40px] w-[200px] mb-2 rounded items-center ">
                 <select name="category" id="" class="bg-transparent w-full">
@@ -33,6 +37,25 @@
                         <option value="{{ item.id }}" class="">{{ item.name }}</option>
                     {% endfor %}
                 </select>
+            </div>
+
+            <label for="">image1</label><br>
+            <input type="file" name="image1" accept="images/*" class="mb-2"><br>
+            
+            <label for="">image2</label><br>
+            <input type="file" name="image2" accept="images/*" class="mb-2"><br>
+            
+            <label for="">image3</label><br>
+            <input type="file" name="image3" accept="images/*" class="mb-2"><br>
+            
+            <label for="">image4</label><br>
+            <input type="file" name="image4" accept="images/*" class="mb-2"><br>
+            
+            <label for="">image5</label><br>
+            <input type="file" name="image5" accept="images/*" class="mb-2">
+
+            <div class="w-full flex justify-end">
+                <button type="submit" class="mt-4 bg-[#658C4A] text-white font-medium py-1 px-4 rounded">Save</button>
             </div>
         </form>
     </div>
