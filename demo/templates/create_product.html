@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Product
+{% endblock %}
+
+{% block content %}
+
+    {% include 'header/topbar.html'   %}
+
+    <hr>
+
+    <div class="container mx-auto py-10 h-screen flex justify-center">
+        <form action="{% url 'home' %}" method="post">
+            {% csrf_token %}
+            <label for="">Name</label><br>
+            <div class=" flex space-x-[8px] px-[5px] py-[8px] border-[2px] border-solid border-gray-200 h-[40px] w-[600px] mb-2 rounded">
+                <input type="text" class="focus:outline-none w-full bg-transparent" placeholder="" name="name">
+            </div>
+            <label for="">Description</label><br>
+            <div class="flex px-[5px] py-[8px] mb-2 rounded border-[2px] border-solid border-gray-200 ">
+                <textarea name="description" id="" cols="70" rows="10" class="focus:outline-none w-full bg-transparent"></textarea>
+            </div>
+            <label for="">Price</label><br>
+            <div class=" flex space-x-[8px] px-[5px] py-[8px] border-[2px] border-solid border-gray-200 h-[40px] w-[200px] mb-2 rounded">
+                <input type="number" class="focus:outline-none w-full bg-transparent" placeholder="" name="name">
+            </div>
+            <label for="">Category</label><br>
+            <div class=" flex space-x-[8px] px-[5px] py-[8px] border-[2px] border-solid border-gray-200 h-[40px] w-[200px] mb-2 rounded items-center ">
+                <select name="category" id="" class="bg-transparent w-full">
+                    {% for item in category %}
+                        <option value="{{ item.id }}" class="">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </form>
+    </div>
+{% endblock %}

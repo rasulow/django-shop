@@ -10,6 +10,7 @@
   </div>
   <div class="flex space-x-[16px]">
     {% if request.user.is_authenticated %}
+      <a href="{% url 'create-product' %}" class="py-1 px-2 rounded min-w-[80px] text-center border border-[#658C4A] border-solid text-[#658C4A]">Create product</a>
       <p class="py-1 px-2 rounded min-w-[80px] text-center border border-[#658C4A] border-solid text-[#658C4A]">{{ request.user.first_name }} {{ request.user.last_name }}</p>
       <a href="{% url 'logout' %}" class="p-1 rounded w-[80px] text-center border border-[#711324] border-solid text-[#711324] hover:text-white hover:bg-[#711324]">Log out</a>
     {% else %}

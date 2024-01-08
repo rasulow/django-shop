@@ -67,3 +67,11 @@ def create_order(request):
         models.Order.objects.create(phone_number=phone_number, user_id=user_id, product_id=product_id, note=note)
         return redirect('home')
     return render(request, 'create_order.html')
+
+
+def create_product(request):
+    category = models.Category.objects.all()
+    context = {
+        "category": category
+    }
+    return render(request, 'create_product.html', context)
