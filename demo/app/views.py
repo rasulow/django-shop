@@ -76,7 +76,7 @@ def create_order(request):
         product_id = request.GET.get('product_id', 0)
         user_id = request.user.id
         models.Order.objects.create(phone_number=phone_number, user_id=user_id, product_id=product_id, note=note)
-        return redirect('home')
+        return redirect('orders')
     return render(request, 'create_order.html') 
 
 
@@ -117,7 +117,7 @@ def create_product(request):
 # orders page
 @login_required(login_url='/login')
 def orders(request):
-    orders = models.Order.objects.filter(user_id=request.user.id)
+    orders = models.Order.objects.filter(user_id=request.user.id).order_by('-created_at')
     context = {
         'orders': orders
     }

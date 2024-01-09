@@ -27,6 +27,7 @@ class Product(models.Model):
     image3 = models.ImageField(null=True, blank=True, upload_to='images/')
     image4 = models.ImageField(null=True, blank=True, upload_to='images/')
     image5 = models.ImageField(null=True, blank=True, upload_to='images/')
+    created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         db_table = 'product'
@@ -43,6 +44,7 @@ class Order(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     note = models.TextField(null=True)
     status = models.BooleanField(null=False, default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         db_table = 'order'

@@ -15,7 +15,8 @@
                         <img src="{{ order.product.image1.url }}" alt="" class="object-cover w-full h-full transition-transform transform hover:scale-110 duration-500">
                     </div>
                     <div class="pl-3 w-1/2">
-                        <div class="leading-tight font-medium h-[100px]">{{ order.product.name }}</div>
+                        <div class="leading-tight font-medium h-[80px]">{{ order.product.name }}</div>
+                        <div class="">{{ order.created_at|date:"d-m-Y H:i:s" }}</div>
                         <div class="flex justify-between">
                             <div class="text-blue-500 font-semibold">{{ order.product.price }}</div>
                             {% if order.status %}

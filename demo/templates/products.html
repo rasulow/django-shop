@@ -8,10 +8,10 @@
 {% block content %}
 
     {% include 'header/topbar.html' %}
-    <div class="container mx-auto flex py-10 space-x-[20px] h-screen">
+    <div class="container mx-auto flex py-10 space-x-[20px] h-screen flex-wrap justify-center gap-2">
         {% if products %}
             {% for product in products %}
-                <div class="rounded w-[300px] max-h-[350px] bg-white shadow-lg">
+                <div class="rounded w-[280px] max-h-[350px] bg-white shadow-lg">
                     <div class="overflow-hidden">
                         <img src="{{ product.image1.url }}" alt="" class="rounded-t w-full h-[200px] object-cover transition-transform transform hover:scale-110 duration-500">
                     </div>
