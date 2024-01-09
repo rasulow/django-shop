@@ -46,8 +46,11 @@ def user_logout(request):
 # products page
 def products(request):
     category = request.GET.get('category', 0)
+    search = request.GET.get('search', None)
     if category != 0:
         products = models.Product.objects.filter(category_id=int(category))
+    elif search is not None:
+        products = models.Product.objects.filter(name__icontains=search)
     else:
         products = models.Product.objects.all()
         

@@ -6,28 +6,29 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'header/topbar.html'   %}
-
-    <hr>
-
-    <div class="container mx-auto flex py-10 space-x-[20px] h-screen">
-        {% for order in orders %}
-            <div class="rounded p-3 w-[400px] h-[150px] bg-white flex">
-                <div class="overflow-hidden w-1/2 h-full rounded">
-                    <img src="{{ order.product.image1.url }}" alt="" class="object-cover w-full h-full transition-transform transform hover:scale-110 duration-500">
-                </div>
-                <div class="pl-3 w-1/2">
-                    <div class="leading-tight font-medium h-[100px]">{{ order.product.name }}</div>
-                    <div class="flex justify-between">
-                        <div class="text-blue-500 font-semibold">{{ order.product.price }}</div>
-                        {% if order.status %}
-                            <div class="text-[#658C4A]">Tolenen</div>
-                        {% else %}
-                            <div class="text-[#711324]">Tolenmedik</div>
-                        {% endif %}
+    {% include 'header/topbar.html' %}
+    {% if orders %}
+        <div class="container mx-auto flex py-10 space-x-[20px] h-screen">
+            {% for order in orders %}
+                <div class="rounded p-3 w-[400px] h-[150px] bg-white flex">
+                    <div class="overflow-hidden w-1/2 h-full rounded">
+                        <img src="{{ order.product.image1.url }}" alt="" class="object-cover w-full h-full transition-transform transform hover:scale-110 duration-500">
+                    </div>
+                    <div class="pl-3 w-1/2">
+                        <div class="leading-tight font-medium h-[100px]">{{ order.product.name }}</div>
+                        <div class="flex justify-between">
+                            <div class="text-blue-500 font-semibold">{{ order.product.price }}</div>
+                            {% if order.status %}
+                                <div class="text-[#658C4A]">Tolenen</div>
+                            {% else %}
+                                <div class="text-red-500">Tolenmedik</div>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <img src="{% static 'img/no-data.svg' %}" alt="" class="w-screen h-[700px]">        
+    {% endif %}
 {% endblock %}

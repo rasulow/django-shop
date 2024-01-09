@@ -5,20 +5,55 @@
     <img src="{% static 'icons/logo.png' %}" alt="" class="cursor-pointer w-[150px]">
   </a>
   <div class=" flex space-x-[8px] px-[16px] py-[8px] rounded-full border-[2px] border-solid border-gray-200 h-[40px] w-[650px]">
-    <img src="{% static 'icons/search.svg' %}" alt="" class="pointer">
-    <input type="text" class="focus:outline-none w-full bg-transparent" placeholder="Search here...">
+    <input type="text" class="focus:outline-none w-full bg-transparent" placeholder="Search here..." id="searchInput" onkeydown="checkEnter(event)">
+    <a href="#" onclick="performSearch()">
+      <img src="{% static 'icons/search.svg' %}" alt="" class="cursor-pointer">
+    </a>
   </div>
   
   <div class="flex space-x-[16px]">
-    <a href="{% url 'products' %}" class="py-1 px-2 rounded text-center border border-[#658C4A] border-solid text-[#658C4A] text-[15px]">Products</a>
+    <a href="{% url 'products' %}" class="py-1 px-2 rounded text-center border border-[#658C4A] border-solid text-[#658C4A] text-[15px] hover:text-white hover:bg-[#658C4A]">Products</a>
     {% if request.user.is_authenticated %}
-      <a href="{% url 'orders' %}" class="py-1 px-2 rounded text-center border border-[#658C4A] border-solid text-[#658C4A] text-[15px]">My Orders</a>
-      <a href="{% url 'create-product' %}" class="py-1 px-2 rounded text-center border border-[#658C4A] border-solid text-[#658C4A] text-[15px]">Create product</a>
+      <a href="{% url 'orders' %}" class="py-1 px-2 rounded text-center border border-[#658C4A] border-solid text-[#658C4A] text-[15px] hover:text-white hover:bg-[#658C4A]">My Orders</a>
+      <a href="{% url 'create-product' %}" class="py-1 px-2 rounded text-center border border-[#658C4A] border-solid text-[#658C4A] text-[15px] hover:text-white hover:bg-[#658C4A]">Create product</a>
       <p class="py-1 px-2 rounded min-w-[80px] text-center border border-[#658C4A] border-solid text-[#658C4A]">{{ request.user.first_name }} {{ request.user.last_name }}</p>
-      <a href="{% url 'logout' %}" class="px-2 flex items-center rounded text-center border border-[#711324] border-solid text-[#711324] hover:text-white hover:bg-[#711324] text-[15px]">Log out</a>
+      <a href="{% url 'logout' %}" class="px-2 flex items-center rounded text-center border border-red-500 border-solid text-red-500 hover:text-white hover:bg-red-500 text-[15px]">Log out</a>
     {% else %}
       <a href="{% url 'login' %}" class="p-1 rounded w-[80px] text-center border border-[#658C4A] border-solid text-[#658C4A] hover:text-white hover:bg-[#658C4A]">Sign in</a>
       <a href="{% url 'signup' %}" class="p-1 rounded w-[80px] text-center border border-[#658C4A] border-solid text-white bg-[#658C4A]">Sign up</a>
     {% endif %}
   </div>
 </div>
+
+
+<script>
+  function getQueryParam(param) {
+    var urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  function setInputValueFromQueryParam() {
+    var inputElement = document.getElementById('searchInput');
+    var searchValue = getQueryParam('search');
+    
+    if (searchValue !== null) {
+      inputElement.value = searchValue;
+    }
+  }
+
+  setInputValueFromQueryParam();
+
+  function checkEnter(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault(); 
+      performSearch();
+    }
+  }
+
+  function performSearch() {
+    var inputElement = document.getElementById('searchInput');
+    var inputValue = inputElement.value;
+    var url = "{% url 'products' %}?search=" + encodeURIComponent(inputValue);
+    window.location.href = url;
+  }
+</script>

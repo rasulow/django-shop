@@ -6,10 +6,8 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'header/topbar.html'   %}
 
-    <hr>
-
+    {% include 'header/topbar.html' %}
     <div class="container mx-auto flex py-10 space-x-[20px] h-screen">
         {% if products %}
             {% for product in products %}

@@ -7,10 +7,7 @@
 
 {% block content %}
 
-    {% include 'header/topbar.html'   %}
-
-    <hr>
-
+    {% include 'header/topbar.html' %}
     <div class="container mx-auto py-10 h-screen flex justify-center">
         <form action="#" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -25,18 +22,24 @@
                 <textarea name="description" id="" cols="70" rows="10" class="focus:outline-none w-full bg-transparent"></textarea>
             </div>
             
-            <label for="">Price</label><br>
-            <div class=" flex space-x-[8px] px-[5px] py-[8px] border-[2px] border-solid border-gray-200 h-[40px] w-[200px] mb-2 rounded">
-                <input type="number" class="focus:outline-none w-full bg-transparent" placeholder="" name="price">
-            </div>
+            <div class="flex space-x-2  ">
+                <div>
+                    <label for="">Price</label><br>
+                    <div class=" flex space-x-[8px] px-[5px] py-[8px] border-[2px] border-solid border-gray-200 h-[40px] w-[200px] mb-2 rounded">
+                        <input type="number" class="focus:outline-none w-full bg-transparent" placeholder="" name="price">
+                    </div>
+                </div>  
 
-            <label for="">Category</label><br>
-            <div class=" flex space-x-[8px] px-[5px] py-[8px] border-[2px] border-solid border-gray-200 h-[40px] w-[200px] mb-2 rounded items-center ">
-                <select name="category" id="" class="bg-transparent w-full">
-                    {% for item in category %}
-                        <option value="{{ item.id }}" class="">{{ item.name }}</option>
-                    {% endfor %}
-                </select>
+                <div>
+                    <label for="">Category</label><br>
+                    <div class=" flex space-x-[8px] px-[5px] py-[8px] border-[2px] border-solid border-gray-200 h-[40px] w-[200px] mb-2 rounded items-center ">
+                        <select name="category" id="" class="bg-transparent w-full">
+                            {% for item in category %}
+                                <option value="{{ item.id }}" class="text-[16px]">{{ item.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <label for="">image1</label><br>
